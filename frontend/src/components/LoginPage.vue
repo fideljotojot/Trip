@@ -30,10 +30,12 @@ export default {
         <i class="fi fi-rr-interrogation help-icon" aria-hidden="true" @click="ask = true"></i>
 
         <div v-if="ask" class="overlay" @click="closeOverlay">
-          <div class="content">
-            <h2>Need Help?</h2>
+          <div class="overlay-content">
+            <div class="overlay-content-header">
+              <h2>Need Help?</h2>
+              <i class="fi fi-br-cross-small close-btn" @click="closeOverlay"></i>
+            </div>
             <p>Click the arrow icon to proceed to the confirmation page.</p>
-            <button @click="closeOverlay" class="close-btn"><i class="fi fi-br-cross-small"></i></button>
           </div>
         </div>
       </div>
@@ -131,19 +133,39 @@ header {
   z-index: 100;
 }
 
-.content {
+.overlay-content {
   background-color: #fff;
   padding: 2em;
   border-radius: 1.5em;
   text-align: center;
   max-width: 90%;
-  height: 30%;
+  height: 20%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-
 }
 
+.overlay-content-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  margin-bottom: 0.5em;
+}
+
+.overlay-content-header h2 {
+  margin: 0;
+  font-weight: 900;
+  color: #333;
+}
+
+.close-btn {
+  position: relative;
+  top: -55%;
+  right: -3%;
+  font-size: 1em;
+  color: #333;
+  cursor: pointer;
+}
 
 @keyframes pulse {
   0% { transform: translate(-50%) scale(1); }
