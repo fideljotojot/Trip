@@ -10,6 +10,9 @@ export default {
     confirmUser() {
       this.confirm = true;
       this.$router.push('/confirm');
+    },
+    closeOverlay() {
+      this.ask = false;
     }
   }
 }
@@ -26,7 +29,13 @@ export default {
 
         <i class="fi fi-rr-interrogation help-icon" aria-hidden="true" @click="ask = true"></i>
 
-        <div v-if="ask"></div>
+        <div v-if="ask" class="overlay" @click="closeOverlay">
+          <div class="content">
+            <h2>Need Help?</h2>
+            <p>Click the arrow icon to proceed to the confirmation page.</p>
+            <button @click="closeOverlay" class="close-btn"><i class="fi fi-br-cross-small"></i></button>
+          </div>
+        </div>
       </div>
     </transition>
   </div>
@@ -107,6 +116,32 @@ header {
   background-repeat: no-repeat;
   transform: translate(-50%, -50%);
   filter: invert(1) sepia(0.50) saturate(7) hue-rotate(3deg) brightness(.93) contrast(1);
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.content {
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 1.5em;
+  text-align: center;
+  max-width: 90%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
 }
 
 
