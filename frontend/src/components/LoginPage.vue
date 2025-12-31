@@ -96,8 +96,8 @@ header {
 
 .arrow-btn {
   position: relative;
-  width: 5.6em;
-  height: 5.6em;
+  width: 5.3em;
+  height: 5.3em;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -109,8 +109,8 @@ header {
 
 .arrow-mark {
   position: absolute;
-  top: 380%;
-  left: 425%;
+  top: 370%;
+  left: 465%;
   width: 100%;
   height: 100%;
   background-image: url('../assets/images/love-arrow.png');

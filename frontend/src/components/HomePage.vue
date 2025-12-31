@@ -1,3 +1,19 @@
+<script>
+export default {
+    data() {
+        return {
+            user: 'Beatrix'
+        }
+    }
+}
+</script>
+
 <template>
-    <h1>Welcome to the Home Page</h1>
+    <main>
+        <header>Welcome, dear {{ user }}</header>
+    </main>
 </template>
+
+<style scoped>
+
+</style>

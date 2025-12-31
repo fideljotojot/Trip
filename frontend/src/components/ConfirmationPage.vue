@@ -1,4 +1,9 @@
 <script>
+import leftArrow from '../assets/images/left-arrow.gif';
+import colosseum from '../assets/images/postcards/postcards (3).png';
+import cefalu from '../assets/images/postcards/postcards (4).png';
+import venice from '../assets/images/postcards/postcards (5).png';
+import pontePietra from '../assets/images/postcards/postcards (1).png';
 
 export default {
   data() {
@@ -9,7 +14,12 @@ export default {
       privateUsername: 'BeatrixInItaly',
       privatePassword: '12032024',
       errorMessage: '',
-      confirm: false
+      confirm: false,
+      leftArrow: leftArrow,
+      colosseum: colosseum,
+      cefalu: cefalu,
+      venice: venice,
+      pontePietra: pontePietra
     }  
   },
   watch: {
@@ -18,6 +28,11 @@ export default {
     },
     password() {
       this.checkAndSubmit();
+    },
+    showConfirmation(newVal) {
+      if (newVal) {
+        this.goToHome();
+      }
     }
   },
   methods: {
@@ -41,6 +56,18 @@ export default {
     },
     returnToLogin() {
       this.$router.push('/');
+    },
+    goToHome() {
+      if (this.showConfirmation) {
+        setTimeout(() => {
+          this.$router.push('/home');
+          console.log('redirecting to home')
+        }, 2000);
+      }
+    },
+    handleOverlayClick() {
+      this.showConfirmation = false;
+      this.confirm = false;
     }
   }
 }
@@ -54,13 +81,22 @@ export default {
         <section v-if="!showConfirmation" key="login" class="login-box">
           <div class="return">
             <a @click.prevent="returnToLogin" href="#" class="return-link">
-              <img src="../assets/images/left-arrow.gif" alt="Return Icon" width="50" height="auto">
+              <img :src="leftArrow" alt="Return Icon" width="50" height="auto">
             </a>
           </div>
           <form @submit.prevent="handleSubmit" class="postcard-form">
               <input type="text" id="username" v-model="username" required placeholder="Recipient">
               <input type="password" id="password" v-model="password" required placeholder="Sender">
           </form>
+
+          <div class="postcard-img">
+            <ul>
+              <li><img :src="colosseum" alt="Colosseum Postcard"></li>
+              <li><img :src="cefalu" alt="Cefalù Postcard"></li>
+              <li><img :src="venice" alt="Venice Postcard"></li>
+              <li><img :src="pontePietra" alt="Ponte Pietra Postcard"></li>
+            </ul>
+          </div>
           
           <!-- Error Alert Overlay -->
           <div v-if="errorMessage" class="error-overlay" @click="errorMessage = ''">
@@ -75,14 +111,14 @@ export default {
         </section>
 
         <!-- Confirmation Message -->
-        <div class="overlay" v-else key="confirm" @click="goToHome">
+        <div class="overlay" v-else key="confirm" @click="handleOverlayClick">
           <section class="overlay-content">
             <h1>Login Successful!</h1>
             <p>Welcome to Italy, my love.</p>
-          </section>          @import url('https://fonts.googleapis.com/css2?family=Homemade+Apple&display=swap');
+          </section>
         </div>
 
-      </transition>
+      </transition> 
   </main>
 </template>
 
@@ -121,8 +157,46 @@ main {
 
 
 .return {
-  position: relative;
-  top: 1% ;
+  position: absolute;
+  top: 0%;
+  left: 6%;
+  width: 5.6em;
+  height: 5.6em;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  transition: transform 220ms ease, box-shadow 220ms ease;
+  animation: pulse 3s ease-in-out infinite;
+  z-index: 10;
+  user-select: none;
+}
+
+.return-link img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: transparent;
+  mix-blend-mode: lighten;
+  filter: sepia(0) saturate(7) hue-rotate(3deg) brightness(.93) contrast(1);
+}
+
+.return-link {
+  outline: none !important;
+  border: none !important;
+  text-decoration: none;
+  display: block;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.return-link:focus,
+.return-link:focus-visible,
+.return-link:hover {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
 }
 
 .content {
@@ -170,6 +244,40 @@ form {
   background: transparent;
 }
 
+.postcard-img {
+  position: absolute;
+  top: 65%;
+  left: 55%;
+  width: 100%;
+  transform: translate(-40%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.postcard-img ul{
+  list-style: none;
+}
+
+.postcard-img img {
+  width: 100%;
+  height: 9em;
+  border-radius: .3em;
+}
+
+.postcard-img li:nth-child(1) img {
+  transform: translate(150%, 30%);
+}
+
+.postcard-img li:nth-child(3) img {
+  transform: translate(150%, -10%);
+}
+
+.postcard-img li:nth-child(4) img {
+  transform: translateY(-30%);
+}
+
 /* Tablet */
 @media (max-width: 1023px) {
   .postcard-form {
@@ -183,7 +291,7 @@ form {
 /* Laptop */
 @media (min-width: 1024px) and (max-width: 1439px) {
   .postcard-form {
-    top: 11%;
+    top: 10.5%;
     left: 25%;
     width: 17.5%;
     gap: 3.5em;
@@ -193,10 +301,31 @@ form {
 /* Desktop */
 @media (min-width: 1440px) {
   .postcard-form {
-    top: 11%;
+    top: 10.5%;
     left: 28%;
     width: 15%;
     gap: 3.2em;
+  }
+
+  .postcard-img img {
+    width: 100%;
+    height: 9.5em;
+  }
+
+  .postcard-img li:nth-child(1) img {
+    transform: translate(150%, 45%);
+  }
+
+  .postcard-img li:nth-child(2) img {
+    transform: translateY(10%);
+  }
+
+  .postcard-img li:nth-child(3) img {
+    transform: translate(150%, -28%);
+  }
+
+  .postcard-img li:nth-child(4) img {
+    transform: translateY(-65%);
   }
 }
 
