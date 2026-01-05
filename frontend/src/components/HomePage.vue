@@ -3,7 +3,16 @@ export default {
     data() {
         return {
             user: 'Beatrix',
-            pages: ['Amalfi Coast' ,'Calabria','Liguria','Pugulia','Sardania','Sicilia','Toscana']
+            pages: ['Amalfi Coast' ,'Calabria','Liguria','Pugulia','Sardania','Sicilia','Toscana'],
+            images: {
+                'Amalfi Coast': [
+                    { name: 'Faraglioni', src: '@/assets/images/Italy/amalfi coast and campania/faraglioni.jpg' },
+                    { name: 'Marina', src: '@/assets/images/Italy/amalfi coast and campania/marina.jpg' }
+                ],
+                'Calabria' : [
+                    {name: 'Tropea', src: '@/assests/images/Italy/calabria/Vibo-Valentia.jpg'}
+                ]
+            }
         }
     }
 }
