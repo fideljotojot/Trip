@@ -14,6 +14,7 @@ export default {
                 ],
                 'Liguria' : [
                     { name: 'Monterosso', src: '@/assets/images/Italy/liguria/monterosso/Monterosso beach.jpg' },
+                    { name: 'Monterosso', src: '@/assets/images/Italy/liguria/monterosso/Monterosso sunset.jpg' },
                     { name: 'Baia del Silenzio', src: '@/assets/images/Italy/liguria/baia_del_silenzio_Sestri_Levante.jpeg' }
                 ],
                 'Puglia' : [
