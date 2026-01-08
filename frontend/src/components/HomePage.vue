@@ -1,9 +1,27 @@
 <script>
+import amalfiImg from '@/assets/images/Italy/amalfi coast and campania/faraglioni.jpg'
+import calabriaImg from '@/assets/images/Italy/calabria/Vibo-Valentia.jpg'
+import liguriaImg from '@/assets/images/Italy/liguria/monterosso/Monterosso beach.jpg'
+import pugliaImg from '@/assets/images/Italy/puglia/Punta Prosciutto.jpg'
+import sardaniaImg from '@/assets/images/Italy/puglia/Punta Prosciutto.jpg'
+import siciliaImg from '@/assets/images/Italy/puglia/Punta Prosciutto.jpg'
+import toscanaImg from '@/assets/images/Italy/puglia/Punta Prosciutto.jpg'
+
 export default {
     data() {
         return {
             user: 'Beatrix',
+            selectedPage: 'Amalfi Coast',
             pages: ['Amalfi Coast' ,'Calabria','Liguria','Pugulia','Sardania','Sicilia','Toscana'],
+            backgroundImages: {
+                'Amalfi Coast': amalfiImg,
+                'Calabria': calabriaImg,
+                'Liguria': liguriaImg,
+                'Pugulia': pugliaImg,
+                'Sardania': sardaniaImg,
+                'Sicilia': siciliaImg,
+                'Toscana': toscanaImg,
+            },
             images: {
                 'Amalfi Coast': [
                     { name: 'Faraglioni', src: '@/assets/images/Italy/amalfi coast and campania/faraglioni.jpg' },
@@ -35,16 +53,21 @@ export default {
                 ],
             }
         }
+    },
+    methods: {
+        getBackgroundImage() {
+            return this.backgroundImages[this.selectedPage];
+        }
     }
 }
 </script>
 
 <template>
-    <main>
+    <main :style="{ backgroundImage: `url('${getBackgroundImage()}')`, backgroundSize: 'cover', backgroundPosition: 'center' }">
         <section class="sidebar">
             <header>Welcome, dear {{ user }}</header>
             <ul>
-                <li v-for="page in pages" :key="page">
+                <li v-for="page in pages" :key="page" @click="selectedPage = page" :class="{ active: selectedPage === page }">
                     {{ page }}
                 </li>
             </ul>
@@ -86,5 +109,14 @@ main {
 .sidebar ul li {
     font-weight: bold;
     font-size: 1.25;
+    cursor: pointer;
+    padding: 0.5em 1em;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li.active {
+    color: rgb(220, 56, 56);
+    border-left: 3px solid #fff;
 }
 </style>
