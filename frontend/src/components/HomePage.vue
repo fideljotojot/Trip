@@ -11,7 +11,7 @@ import toreSantAndreaImg from '@/assets/images/Italy/puglia/Torre-Sant-Andrea-ne
 export default {
     data() {
         return {
-            user: 'Beatrix',
+            user: 'BEATRIX',
             selectedPage: 'Italy',
             selectedRegion: 'Amalfi Coast',
             selectedBeach: 'Faraglioni',
@@ -92,7 +92,10 @@ export default {
 <template>
     <main :style="{ backgroundImage: this.selectedImage ? `url('${this.selectedImage}')` : 'none', backgroundSize: 'cover', backgroundPosition: 'center' }">
         <section class="sidebar">
-            <header>Welcome, dear <span>{{ user }}</span></header>
+            <header>
+                <p>Welcome to Italy, dear</p> 
+                <span>{{ user }}</span>
+            </header>
             <ul>
                 <li v-for="region in getRegions()" 
                 :key="region.name" 
@@ -127,7 +130,7 @@ main {
 .sidebar {
     width: clamp(200px, 15%, 400px);
     height: 100vh;
-    background-color: rgb(10, 61, 98, 41%);
+    background-color: rgba(10, 61, 97, 0.41);
     display: flex;
     flex-direction: column;
     gap: 1em;
@@ -136,12 +139,18 @@ main {
 }
 
 header {
+    display: flex;
+    flex-direction: column;
     font-family: 'Petrona', serif;
+    font-size: 1.2em;
+    padding: 0 13%;
+    align-items: flex-start;
 }
 
 header span {
-    font-family: 'Cinzel', serif;
+    font-family: 'Perpetua Titling MT', serif;
     font-weight: bold;
+    font-size: 1.5em;
 }
 .sidebar ul {
     list-style: none;
@@ -157,13 +166,14 @@ header span {
     font-weight: bold;
     font-size: 1.25;
     cursor: pointer;
-    padding: 0.5em 1em;
+    padding: auto;
     border-radius: 4px;
     transition: background-color 0.3s ease;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.945);
 }
 
 .sidebar ul li.active {
-    color: rgb(220, 56, 56);
-    border-left: 3px solid #fff;
+    color: #FF6F61;
+    border-left: 3px solid #ffddb6;
 }
 </style>
