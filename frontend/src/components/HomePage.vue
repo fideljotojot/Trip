@@ -144,7 +144,12 @@ export default {
 
         <section class="content">
             <div class="beaches-list">
-                <div v-for="beach in getBeaches()" :key="beach.name" class="beach-card" @click="selectedBeach = beach.name; selectedImage = beach.images && beach.images.length > 0 ? beach.images[0] : null;">
+                <div v-for="beach in getBeaches()" 
+                :key="beach.name" 
+                class="beach-card"
+                :class="{ active: selectedBeach === beach.name }" 
+                @click="selectedBeach = beach.name; 
+                selectedImage = beach.images && beach.images.length > 0 ? beach.images[0] : null;">
                     {{ beach.name }}
                 </div>
             </div>
@@ -223,7 +228,21 @@ header span {
     position: absolute;
     bottom: 3%;
     display: flex;
+    align-items: center;
     gap: 1em;
-    background-color: #FF6F61;
+    background-color: rgba(10, 61, 98, 0.5);
+    padding: 1em;
+}
+
+.beach-card.active {
+    color: #fff;
+    font-size: 2em;
+    font-family: 'Palatino Linotype', serif;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.beach-card {
+    color: rgba(255, 111, 97, 1);
 }
 </style>
