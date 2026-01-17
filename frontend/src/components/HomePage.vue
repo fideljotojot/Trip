@@ -1,6 +1,11 @@
 <script>
+/* Amalfi */
 import faraglioniImg from '@/assets/images/Italy/amalfi coast and campania/faraglioni.jpg'
 import marinaImg from '@/assets/images/Italy/amalfi coast and campania/Marina di Camerota.jpg'
+import fiordoImg1 from '@/assets/images/Italy/amalfi coast and campania/Fiordo/fiordo di Furore.webp'
+import fiordoImg2 from '@/assets/images/Italy/amalfi coast and campania/Fiordo/fiordo di Furore2.webp'
+import fiordoImg3 from '@/assets/images/Italy/amalfi coast and campania/Fiordo/fiordo di Furore3.jpg'
+
 import tropeaImg from '@/assets/images/Italy/calabria/Vibo-Valentia.jpg'
 import monterossoBeachImg from '@/assets/images/Italy/liguria/monterosso/Monterosso beach.jpg'
 import monterossoSunsetImg from '@/assets/images/Italy/liguria/monterosso/Monterosso-Al-Mare.jpg'
@@ -24,7 +29,8 @@ export default {
                         name: 'Amalfi Coast',
                         beaches: [
                             { name: 'Faraglioni', images: [faraglioniImg] },
-                            { name: 'Marina di Camerota', images: [marinaImg] }
+                            { name: 'Marina di Camerota', images: [marinaImg] },
+                            { name: 'Fiordo di Ferore' , images: [fiordoImg1,fiordoImg2,fiordoImg3]}
                         ]
                     },
                     {
